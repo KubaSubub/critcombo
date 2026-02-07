@@ -3,18 +3,18 @@ import { Search } from 'lucide-react';
 
 const SearchInput = () => {
     return (
-        <div className="relative flex w-full items-center group">
-            <div className="absolute left-3 text-text-muted transition-colors group-focus-within:text-accent-primary">
-                <span className="font-mono text-lg">&gt;</span>
+        <div className="relative w-full max-w-md hidden md:block">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <Search className="h-4 w-4 text-accent-secondary" />
             </div>
             <input
                 type="text"
-                placeholder="ENTER_QUERY..."
-                className="h-10 w-full rounded-sm border border-hud-border bg-hud-panel py-2 pl-8 pr-10 font-mono text-sm text-text-main placeholder-text-muted transition-all focus:border-accent-primary focus:outline-none focus:ring-1 focus:ring-accent-primary"
+                className="block w-full rounded-sm border border-hud-border bg-hud-bg/50 py-1.5 pl-10 pr-3 text-sm text-text-main placeholder-text-muted focus:border-accent-primary focus:bg-hud-bg focus:outline-none focus:ring-0 font-mono tracking-wide transition-all"
+                placeholder="TERMINAL_SEARCH >_"
             />
-            <div className="absolute right-3 text-text-muted">
-                <Search className="h-4 w-4" />
-            </div>
+            {/* Decorative corners */}
+            <div className="absolute top-0 right-0 h-1 w-1 bg-accent-secondary" />
+            <div className="absolute bottom-0 left-0 h-1 w-1 bg-accent-secondary" />
         </div>
     );
 };

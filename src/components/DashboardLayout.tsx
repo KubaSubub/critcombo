@@ -12,12 +12,11 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             <TopHUD />
 
             {/* Scrollable Main Content Area */}
-            <main className="flex-1 overflow-y-auto px-6 py-6 scrollbar-thin scrollbar-track-hud-bg scrollbar-thumb-hud-border hover:scrollbar-thumb-accent-secondary">
-                <div className="mx-auto max-w-7xl animate-in fade-in zoom-in duration-500">
+            {/* Added top padding (pt-16) and bottom padding (pb-12) to account for fixed headers/footers */}
+            <main className="flex-1 overflow-y-auto pt-16 pb-12 scrollbar-thin scrollbar-track-hud-bg scrollbar-thumb-hud-border hover:scrollbar-thumb-accent-secondary">
+                <div className="mx-auto max-w-7xl animate-in fade-in zoom-in duration-500 p-6">
                     {children}
                 </div>
-                {/* Spacer for Bottom HUD so content isn't hidden behind it */}
-                <div className="h-24"></div>
             </main>
 
             <BottomHUD />
