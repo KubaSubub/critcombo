@@ -28,10 +28,10 @@ export async function GET(request: Request) {
         });
 
         return NextResponse.json(games);
-    } catch (error: any) {
+    } catch (error) {
         console.error('API Error:', error);
         return NextResponse.json(
-            { error: 'Failed to fetch games', details: error.message },
+            { error: 'Failed to fetch games' },
             { status: 500 }
         );
     }
