@@ -9,17 +9,21 @@ import { GameCardSkeleton } from '@/components/skeletons/GameCardSkeleton';
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [games, setGames] = useState<any[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchGames() {
       try {
         const res = await fetch('/api/games');
-        if (res.ok) {
-          const data = await res.json();
-          setGames(data);
+        if (!res.ok) {
+          const errorText = await res.text();
+          throw new Error(`API Error: ${res.status} ${res.statusText} - ${errorText}`);
         }
-      } catch (error) {
-        console.error('Failed to fetch games', error);
+        const data = await res.json();
+        setGames(data);
+      } catch (err: any) {
+        console.error('Failed to fetch games', err);
+        setError(err.message);
       } finally {
         setIsLoading(false);
       }
@@ -40,6 +44,13 @@ export default function Home() {
         <div className="ad-label">REKLAMA</div>
         <span className="text-[10px] text-text-muted font-display tracking-widest">GOOGLE_ADSENSE_LEADERBOARD_[728x90]</span>
       </div>
+
+      {error && (
+        <div className="bg-red-500/10 border border-red-500 text-red-500 p-4 rounded text-center">
+          <h3 className="font-bold">BŁĄD DANYCH (DEBUG)</h3>
+          <p className="text-sm font-mono">{error}</p>
+        </div>
+      )}
 
       {/* NOWOŚCI SECTION */}
       <section>
